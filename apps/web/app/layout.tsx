@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { getServerSession } from "next-auth";
 import { Inter } from "next/font/google";
 import AuthProvider from "../components/auth-provider";
 
