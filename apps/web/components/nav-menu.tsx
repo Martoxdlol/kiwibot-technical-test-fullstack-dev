@@ -9,7 +9,7 @@ export function NavMenu(props: {
     className?: string,
     header?: React.ReactNode
 }) {
-    return <div className={cn("w-full h-full overflow-auto px-5 bg-[#F0EBEB]", props.className)}>
+    return <div className={cn("w-full h-full overflow-auto px-5 bg-nav", props.className)}>
         <div className="py-5">
             {props.header}
         </div>
@@ -27,7 +27,7 @@ export function NavMenuItem(props: {
     className?: string,
     href: Url
 }) {
-    const buttonEffects = "bg-[#E2E2E2] hover:bg-[#D6D6D6] active:bg-[#C9C9C9]"
+    const buttonEffects = "bg-nav-button hover:bg-[#D6D6D6] active:bg-[#C9C9C9]"
 
     let hrefPathname = ""
     if (typeof props.href === "string") {
@@ -60,7 +60,7 @@ export function NavHeader(props: {
     children: React.ReactNode,
     className?: string
 }) {
-    return <header className={cn("bg-[#E2E2E2] rounded-md p-5 flex", props.className)}>
+    return <header className={cn("bg-nav-button rounded-md p-5 flex", props.className)}>
         {props.children}
     </header>
 }
