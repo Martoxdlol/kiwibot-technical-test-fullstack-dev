@@ -14,16 +14,18 @@ export default function FullScreenLogin() {
             objectFit="cover"
         />
         <div className="max-w-[450px] w-full z-10 p-10 bg-stone-500 bg-opacity-50 rounded-lg">
-            <div className="shadow-md mb-4 flex p-4 rounded-md bg-white">
-                Restaurants orders manager
+            <div className="shadow-md mb-4 flex p-4 rounded-md bg-white items-center flex-col">
+                <h1 className="font-medium">Restaurants orders manager</h1>
+                <p className="text-xs">SignIn with provider. Employees only.</p>
             </div>
 
             <button
-                className="shadow-md bg-white text-black p-2 pr-4 rounded-md flex gap-2 w-full  "
+                className="shadow-md bg-white text-black p-2 pr-4 rounded-md flex gap-2 w-full justify-between"
                 onClick={() => void signIn("google")}
             >
                 {googleIcon}
-                SignIn with Google
+                <span>Continue with Google</span>
+                <div className="w-[24px]"></div>
             </button>
         </div>
     </FullScreenCenter>

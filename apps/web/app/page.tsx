@@ -1,7 +1,5 @@
-import FullScreenCenter from "@repo/ui/full-screen-center";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <FullScreenCenter>
-    Hola
-  </FullScreenCenter>
+  return redirect("/dashboard")
 }
