@@ -7,11 +7,10 @@ import Image from "next/image";
 export default function FullScreenLogin() {
     return <FullScreenCenter>
         <Image
-            className="z-0"
+            className="z-0 object-cover"
             src="/food-bg.jpg"
             alt="Food background"
-            layout="fill"
-            objectFit="cover"
+            fill
         />
         <div className="max-w-[450px] w-full z-10 p-10 bg-stone-500 bg-opacity-50 rounded-lg">
             <div className="shadow-md mb-4 flex p-4 rounded-md bg-white items-center flex-col">
