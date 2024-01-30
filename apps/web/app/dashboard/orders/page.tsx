@@ -16,6 +16,6 @@ export default function OrdersPage() {
             <PlusIcon /><span>New order</span>
         </Button>}
     >
-        
+        Orders page
     </PageContent>
 }
