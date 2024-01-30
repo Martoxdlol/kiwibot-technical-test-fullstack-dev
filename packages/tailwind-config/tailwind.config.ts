@@ -5,9 +5,11 @@ const config: Omit<Config, "content"> = {
   theme: {
     extend: {
       colors: {
-        appbar: "#FDF1F1",
+        primary: "#FDF1F1",
+        'primary-strong': "#ffcfcf",
         nav: "#F0EBEB",
         'nav-button': "#E2E2E2",
+        secondary: "#086939",
       }
     },
   },

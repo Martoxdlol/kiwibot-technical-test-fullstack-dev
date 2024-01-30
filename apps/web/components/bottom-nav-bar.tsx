@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "~/lib/utils"
 
 export function BottomNavBar(props: { children: React.ReactNode }) {
-    return <nav className="block bg-appbar">
+    return <nav className="block bg-primary">
         <ul className="grid grid-flow-col" style={{ gridAutoColumns: '1fr' }}>
             {props.children}
         </ul>
@@ -36,7 +36,7 @@ export function BottomNavBarItem(props: {
     return <li>
         <Link href={props.href} className={cn("h-[60px] px-5 w-full flex flex-col justify-center items-center",
             buttonEffects,
-            { 'text-blue-500': isCurrent },
+            { 'text-secondary': isCurrent },
             props.className,
         )}>
             <div className="shrink-0 w-[24px] h-[24px]">

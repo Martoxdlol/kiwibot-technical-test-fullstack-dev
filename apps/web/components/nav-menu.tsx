@@ -43,7 +43,7 @@ export function NavMenuItem(props: {
     return <li>
         <Link href={props.href} className={cn("h-[48px] px-5 flex items-center gap-5 rounded-md",
             buttonEffects,
-            { 'text-blue-500': isCurrent },
+            { 'text-secondary': isCurrent },
             props.className,
         )}>
             <div className="shrink-0 w-[24px] h-[24px]">
