@@ -21,10 +21,10 @@ clientsApp.get('/', authedMiddleware, async (c) => {
 
 clientsApp.post('/', authedMiddleware, async (c) => {
     const input = validateBody(z.object({
-        firstName: z.string(),
-        lastName: z.string(),
-        address: z.string(),
-        country: z.string(),
+        firstName: z.string().trim().min(1).max(255),
+        lastName: z.string().trim().min(1).max(255),
+        address: z.string().trim().min(1).max(255),
+        country: z.string().trim().min(1).max(255),
         creationIdempotencyKey: z.string(),
         phoneNumber: phoneNumberSchema,
     }), await c.req.json())

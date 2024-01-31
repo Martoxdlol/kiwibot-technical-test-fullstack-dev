@@ -11,7 +11,7 @@ ordersApp.post('/', async (c) => {
         restaurantId: z.string(),
         creationIdempotencyKey: z.string(),
         items: z.array(z.object({
-            description: z.string(),
+            description: z.string().trim().min(1).max(255),
             unitPrice: z.number(),
             quantity: z.number(),
         })),
@@ -23,7 +23,10 @@ ordersApp.post('/', async (c) => {
             client: { connect: { id: input.customerId } },
             restaurant: { connect: { id: input.restaurantId } },
             orderItems: {
-                create: input.items
+                create: input.items.map((item) => ({
+                    ...item,
+                    unitPrice: Math.floor(item.unitPrice * 100) // Convert float to dollar cents
+                }))
             }
         }
     })

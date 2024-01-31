@@ -13,7 +13,7 @@ type OrderInfo = Order & {
 export default function OrderTile(props: {
     order: OrderInfo
 }) {
-    const totalPrice = props.order.orderItems.reduce((acc, item) => acc + item.unitPrice, 0)
+    const totalPrice = props.order.orderItems.reduce((acc, item) => acc + (item.unitPrice / 100), 0)
 
     return <Link className="block mx-[-20px] p-[20px] relative hover:bg-stone-200 active:bg-stone-200" href={"/dashboard/orders/" + props.order.id}>
         <span className="md:absolute right-[20px] font-medium text-stone-500 flex gap-2">

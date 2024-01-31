@@ -32,7 +32,7 @@ export default async function OrderPage(props: { params: { id: string } }) {
     }
 
     const liClass = 'flex items-center gap-2 py-3'
-    const totalPrice = order.orderItems.reduce((acc, item) => acc + item.quantity * item.unitPrice, 0).toFixed(2)
+    const totalPrice = order.orderItems.reduce((acc, item) => acc + item.quantity * (item.unitPrice / 100), 0).toFixed(2)
 
     let status = 'Pending'
     let statusColor = 'text-orange-500'

@@ -20,9 +20,9 @@ restaurantsApp.get('/', authedMiddleware, async (c) => {
 
 restaurantsApp.post('/', authedMiddleware, async (c) => {
     const input = validateBody(z.object({
-        name: z.string(),
-        address: z.string(),
-        country: z.string(),
+        name: z.string().trim().min(1).max(255),
+        address: z.string().trim().min(1).max(255),
+        country: z.string().trim().min(1).max(255),
         phoneNumber: phoneNumberSchema,
         creationIdempotencyKey: z.string(),
     }), await c.req.json())
