@@ -3,9 +3,9 @@
 import { StoreIcon } from "lucide-react"
 import PickerModal from "./picker-modal"
 import { useQuery } from "@tanstack/react-query"
-import { getRestaurants } from "~/actions/actions"
 import { useMemo, useState } from "react"
 import { Button } from "@repo/ui/button"
+import { fetchRestaurants } from "~/lib/api"
 
 export type Restaurant = {
     id: string
@@ -23,7 +23,7 @@ export type PickRestaurantDialogProps = {
 export default function PickRestaurantDialog(props: PickRestaurantDialogProps) {
     const { data: restaurants } = useQuery({
         queryKey: ['restaurants'],
-        queryFn: async () => await getRestaurants()
+        queryFn: async () => await fetchRestaurants()
     })
 
     const [savedValue, setSavedValue] = useState(props.value)

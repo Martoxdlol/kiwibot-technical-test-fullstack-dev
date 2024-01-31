@@ -3,17 +3,9 @@
 import { UserIcon } from "lucide-react"
 import PickerModal from "./picker-modal"
 import { useQuery } from "@tanstack/react-query"
-import { getCustomers } from "~/actions/actions"
 import { useMemo, useState } from "react"
 import { Button } from "@repo/ui/button"
-
-export type Customer = {
-    id: string
-    firstName: string
-    lastName: string
-    country: string
-    address: string
-}
+import { fetchClients } from "~/lib/api"
 
 export type PickCustomerDialogProps = {
     value?: string
@@ -24,7 +16,7 @@ export type PickCustomerDialogProps = {
 export default function PickCustomerDialog(props: PickCustomerDialogProps) {
     const { data: users } = useQuery({
         queryKey: ['users'],
-        queryFn: async () => await getCustomers()
+        queryFn: async () => await fetchClients()
     })
 
     const [savedValue, setSavedValue] = useState(props.value)

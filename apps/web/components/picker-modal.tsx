@@ -1,8 +1,7 @@
 "use client"
-import { Button } from '@repo/ui/button';
 import FilledInput from '@repo/ui/filled-input';
-import { Loader2Icon, UserIcon } from 'lucide-react';
-import { useId, useLayoutEffect, useState } from 'react';
+import { Loader2Icon } from 'lucide-react';
+import { useMemo, useState } from 'react';
 import Modal from 'react-modal';
 
 type PickerModalProps = {
@@ -20,6 +19,8 @@ type PickerModalProps = {
 export default function PickerModal(props: PickerModalProps) {
     const [modalIsOpen, setIsOpen] = useState(false);
 
+    const [filter, setFilter] = useState('')
+
     function openModal() {
         setIsOpen(true);
     }
@@ -27,6 +28,18 @@ export default function PickerModal(props: PickerModalProps) {
     function closeModal() {
         setIsOpen(false);
     }
+
+    const filteredOptions = useMemo(() => {
+        if (!filter) return props.options
+
+        return props.options?.filter(option => {
+            return (
+                option.label.toLowerCase().includes(filter.toLowerCase()) ||
+                option.description.toLowerCase().includes(filter.toLowerCase()) ||
+                option.value.toLowerCase().includes(filter.toLowerCase())
+            )
+        })
+    }, [props.options, filter])
 
     return <div>
         <div onClick={openModal}>
@@ -49,8 +62,14 @@ export default function PickerModal(props: PickerModalProps) {
                 }
             }}
         >
-            <FilledInput label={props.searchLabel} placeholder='Search...' className='sticky top-0' />
-            {props.options?.map(option => <button
+            <FilledInput
+                label={props.searchLabel}
+                placeholder='Search...'
+                className='sticky top-0'
+                value={filter}
+                onChange={e => setFilter(e.target.value)}
+            />
+            {filteredOptions?.map(option => <button
                 type='button'
                 key={option.value}
                 className='rounded-md flex items-center px-5 py-2 gap-5 bg-primary hover:bg-primary-strong'
@@ -70,7 +89,7 @@ export default function PickerModal(props: PickerModalProps) {
                 <Loader2Icon className='animate-spin' />
             </div>}
 
-            {props.options?.length === 0 && <div className='py-10 flex justify-center'>
+            {filteredOptions?.length === 0 && <div className='py-10 flex justify-center'>
                 <p className='text-gray-500'>No results</p>
             </div>}
         </Modal>
