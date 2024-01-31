@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./flat-button": "./src/flat-button.tsx",
     "./filled-input": "./src/filled-input.tsx",
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",

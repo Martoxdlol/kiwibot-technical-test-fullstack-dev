@@ -39,11 +39,5 @@ export default function OrderTile(props: {
                 <span className="bg-primary-strong rounded-sm block px-1 ml-1 whitespace-nowrap shrink-0">{item.quantity}</span>
             </div>)}
         </div>
-
-        <div>
-            {props.order.status === 'PENDING' && <>
-
-            </>}
-        </div>
     </Link>
 }

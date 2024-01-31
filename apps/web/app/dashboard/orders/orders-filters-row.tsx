@@ -39,7 +39,7 @@ export function OrdersFilterRow() {
                 'opacity-50': !showingInProgress,
             })}
             onClick={() => {
-                if (showingPending) {
+                if (showingInProgress) {
                     status.delete('IN_PROGRESS')
                 } else {
                     status.add('IN_PROGRESS')
