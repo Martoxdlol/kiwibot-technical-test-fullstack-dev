@@ -8,6 +8,7 @@ import { Client } from "database";
 import { useRouter } from "next/navigation";
 import { Trash2Icon } from "lucide-react";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function UpdateClientView(props: { client: Client }) {
     const formSubmitId = useId()
@@ -47,7 +48,10 @@ export default function UpdateClientView(props: { client: Client }) {
                 router.refresh()
             }}
         />
-        <div className="mt-5">
+        <div className="mt-5 gap-5 grid md:grid-cols-2">
+            <Link href={`/dashboard/orders?clientId=${props.client.id}`}>
+                <Button className="w-full">View orders</Button>
+            </Link>
             <Button className="bg-red-500 text-white" onClick={handleDelete}><Trash2Icon />Delete client</Button>
         </div>
     </PageContent>

@@ -8,6 +8,7 @@ import { Restaurant } from "database";
 import { useRouter } from "next/navigation";
 import { Trash2Icon } from "lucide-react";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function UpdateRestaurantView(props: { restaurant: Restaurant }) {
     const formSubmitId = useId()
@@ -47,7 +48,10 @@ export default function UpdateRestaurantView(props: { restaurant: Restaurant }) 
                 router.refresh()
             }}
         />
-        <div className="mt-5">
+        <div className="mt-5 gap-5 grid md:grid-cols-2">
+            <Link href={`/dashboard/orders?restaurantId=${props.restaurant.id}`}>
+                <Button className="w-full">View orders</Button>
+            </Link>
             <Button className="bg-red-500 text-white" onClick={handleDelete}><Trash2Icon />Delete restaurant</Button>
         </div>
     </PageContent>

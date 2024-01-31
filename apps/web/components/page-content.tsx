@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { useId, useLayoutEffect } from "react";
 import { cn } from "~/lib/utils";
 
+let initialPageLoaded = false
+
 export default function PageContent(props: {
     title: React.ReactNode,
     children: React.ReactNode,
@@ -16,6 +18,11 @@ export default function PageContent(props: {
     const navId = useId();
 
     useLayoutEffect(() => {
+        if(!initialPageLoaded) {
+            initialPageLoaded = true
+            return
+        }
+
         document.getElementById(containerId)?.animate([
             {
                 opacity: 0.6,

@@ -5,7 +5,7 @@ import OrderTile from "~/components/order-tile"
 import dayjs from 'dayjs'
 import { OrdersFilterRow } from "./orders-filters-row"
 
-export default async function OrdersPage({ searchParams }: { searchParams: { date?: string, status?: string } }) {
+export default async function OrdersPage({ searchParams }: { searchParams: { date?: string, status?: string, clientId?: string, restaurantId?: string, } }) {
     const statusStr = searchParams.status
 
     const showStatus: OrderStatus[] = []
@@ -34,6 +34,8 @@ export default async function OrdersPage({ searchParams }: { searchParams: { dat
             status: {
                 in: showStatus
             },
+            restaurantId: searchParams.restaurantId,
+            clientId: searchParams.clientId,
             OR: [
                 {
                     updatedAt: {

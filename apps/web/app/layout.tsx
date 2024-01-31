@@ -19,6 +19,10 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
+      <head>
+        {/* Icon */}
+        <link rel="icon" href="/icon.png" />
+      </head>
       <body className={inter.className}>
         <AuthProvider>
           <ReactQueryProvider>

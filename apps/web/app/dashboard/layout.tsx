@@ -1,13 +1,17 @@
+"use client"
 import AppLayout from "~/components/app-layout";
 import { NavHeader, NavMenu, NavMenuItem } from "~/components/nav-menu";
 import { ChefHatIcon, LayoutDashboardIcon, StoreIcon, UserRoundIcon } from 'lucide-react';
 import { BottomNavBar, BottomNavBarItem } from "~/components/bottom-nav-bar";
+import { useUserInfo } from "~/components/user-info-provider";
 
 export default function Layout(props: { children: React.ReactNode }) {
+    const user = useUserInfo()
+
     return <AppLayout
         sideNavMenu={<NavMenu
             header={<NavHeader>
-                Welcome
+                Welcome {user.name}!
             </NavHeader>}
         >
             <NavMenuItem href="/dashboard" icon={<LayoutDashboardIcon />}>Overview</NavMenuItem>
