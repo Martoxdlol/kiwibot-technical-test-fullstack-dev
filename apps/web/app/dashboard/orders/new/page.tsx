@@ -102,10 +102,12 @@ export default function NewOrderPage() {
                 totalPrice={totalPrice}
             />}
         >
-            <div className="grid md:grid-cols-2 gap-5">
-                <PickCustomerDialog name="customerId" />
-                <PickRestaurantDialog name="restaurantId" />
-                <div className="col-span-2 space-y-3">
+            <div className="grid gap-5">
+                <div className="grid md:grid-cols-2 gap-5">
+                    <PickCustomerDialog name="customerId" />
+                    <PickRestaurantDialog name="restaurantId" />
+                </div>
+                <div className="space-y-3">
 
                     {items.length === 0 && <div className="border border-primary-strong border-dashed rounded-md py-10 flex justify-center font-medium text-lg">
                         No items added yet!
@@ -163,7 +165,7 @@ function OrderSummary(props: {
 }) {
 
 
-    return <div className="w-[100%] h-[52px] sm:w-[350px] sm:m-3 sm:rounded-md bg-secondary text-white flex justify-between overflow-hidden">
+    return <div className="w-[100%] h-[52px] bg-secondary text-white flex justify-between overflow-hidden">
         <div className="px-5 py-2">
             <p className="text-sm">{props.totalItems} {props.totalItems === 1 ? 'item' : 'items'}</p>
             <p className="text-xs">Total: ${props.totalPrice.toFixed(2)}</p>
