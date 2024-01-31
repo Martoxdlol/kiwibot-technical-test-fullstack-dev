@@ -10,8 +10,4 @@ module.exports = {
     return config
   },
   transpilePackages: ["@repo/ui"],
-  // disable eslint
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
 };

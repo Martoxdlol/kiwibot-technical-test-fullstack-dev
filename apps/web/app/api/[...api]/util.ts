@@ -1,4 +1,3 @@
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"
 import { Context, Next } from "hono"
 import { HTTPException } from "hono/http-exception"
 import parsePhoneNumber from 'libphonenumber-js'
@@ -39,14 +38,6 @@ export const authedMiddleware = async (c: Context, n: Next) => {
 export function appOnErrorHandler(err: Error, c: Context) {
     if (err instanceof HTTPException) {
         return c.json({ message: err.message }, err.status)
-    }
-
-    if(err instanceof PrismaClientKnownRequestError) {
-        if(err.code === 'P2002') {
-            return c.json({ message: 'Entity already exist' }, 400)
-        }
-
-        return c.json({ message: 'Unknown database error' }, 500)
     }
 
     return c.json({ message: 'An error occurred' }, 500)
