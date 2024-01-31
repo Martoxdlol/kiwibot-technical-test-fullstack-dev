@@ -55,7 +55,7 @@ export function OrdersFilterRow() {
                 'opacity-50': !showingCompleted,
             })}
             onClick={() => {
-                if (showingPending) {
+                if (showingCompleted) {
                     status.delete('COMPLETED')
                 } else {
                     status.add('COMPLETED')
