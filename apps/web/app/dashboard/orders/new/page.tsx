@@ -22,6 +22,8 @@ export default function NewOrderPage() {
 
     const router = useRouter()
 
+    const [creationIdempotencyKey] = useState(nanoid())
+
     function addItem() {
         if (!description.trim() || !unitPrice || !quantity) {
             return
@@ -79,7 +81,7 @@ export default function NewOrderPage() {
             customerId: customerId as string,
             restaurantId: restaurantId as string,
             items,
-            creationIdempotencyKey: nanoid(),
+            creationIdempotencyKey,
         }
 
         try {

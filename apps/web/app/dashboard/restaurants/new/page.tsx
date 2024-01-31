@@ -1,13 +1,13 @@
 "use client"
 import PageContent from "~/components/page-content";
-import { ClientView } from "../client-view";
+import { RestaurantView } from "../restaurant-view";
 import { Button } from "@repo/ui/button";
 import { useId, useState } from "react";
 import { postJSON } from "~/lib/api";
 import { useRouter } from "next/navigation";
 import { nanoid } from "nanoid";
 
-export default function NewClientPage() {
+export default function NewRestaurantPage() {
     const formSubmitId = useId()
 
     const router = useRouter()
@@ -15,25 +15,25 @@ export default function NewClientPage() {
     const [creationIdempotencyKey] = useState(nanoid())
 
     return <PageContent
-        title="New Client"
+        title="New Restaurant"
         floatingActionButton={<div className="pr-6 pb-6">
             <Button
                 onClick={() => {
                     const formSubmit = document.getElementById(formSubmitId) as HTMLButtonElement | undefined;
                     formSubmit?.click()
                 }}
-            >Save client</Button>
+            >Save restaurant</Button>
         </div>}
     >
-        <ClientView
+        <RestaurantView
             formSubmitId={formSubmitId}
-            client={{ firstName: "", lastName: "", phoneNumber: "", country: "", address: "" }}
-            onSave={async (client) => {
-                const r = await postJSON("/api/clients", {
-                    ...client,
+            restaurant={{ name: "", phoneNumber: "", country: "", address: "" }}
+            onSave={async (restaurant) => {
+                const r = await postJSON("/api/restaurants", {
+                    ...restaurant,
                     creationIdempotencyKey,
                 })
-                router.push("/dashboard/clients/" + r.entityId!)
+                router.push("/dashboard/restaurants/" + r.entityId!)
             }}
         />
     </PageContent>

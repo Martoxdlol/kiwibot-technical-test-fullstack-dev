@@ -2,7 +2,6 @@ import { Hono } from "hono"
 import { appOnErrorHandler, authedMiddleware, phoneNumberSchema, validateBody } from "./util"
 import { prisma } from "database"
 import { z } from "zod"
-import { ordersApp } from "./orders"
 
 export const restaurantsApp = new Hono()
 
@@ -28,11 +27,11 @@ restaurantsApp.post('/', authedMiddleware, async (c) => {
         creationIdempotencyKey: z.string(),
     }), await c.req.json())
 
-    await prisma.restaurant.create({
+    const r = await prisma.restaurant.create({
         data: input
     })
 
-    return c.json({ message: 'Restaurant Created' })
+    return c.json({ message: 'Restaurant Created', entityId: r.id })
 })
 
 
@@ -65,4 +64,4 @@ restaurantsApp.delete('/:id', authedMiddleware, async (c) => {
     return c.json({ message: 'Restaurant Deleted' })
 })
 
-ordersApp.onError(appOnErrorHandler)
+restaurantsApp.onError(appOnErrorHandler)

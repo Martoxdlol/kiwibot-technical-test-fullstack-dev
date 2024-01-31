@@ -1,54 +1,54 @@
 "use client"
 import PageContent from "~/components/page-content";
-import { ClientView } from "../client-view";
+import { RestaurantView } from "../restaurant-view";
 import { Button } from "@repo/ui/button";
 import { useId } from "react";
 import { fetchDelete, patchJSON } from "~/lib/api";
-import { Client } from "database";
+import { Restaurant } from "database";
 import { useRouter } from "next/navigation";
 import { Trash2Icon } from "lucide-react";
 import { toast } from "sonner";
 
-export default function UpdateClientView(props: { client: Client }) {
+export default function UpdateRestaurantView(props: { restaurant: Restaurant }) {
     const formSubmitId = useId()
     const router = useRouter()
 
     async function handleDelete() {
-        if (!confirm("Are you sure you want to delete this client?")) {
+        if (!confirm("Are you sure you want to delete this restaurant?")) {
             return
         }
 
         try {
-            await fetchDelete("/api/clients/" + props.client.id)
-            toast.success("Client deleted")
-            router.replace("/dashboard/clients")
+            await fetchDelete("/api/restaurants/" + props.restaurant.id)
+            toast.success("Restaurant deleted")
+            router.replace("/dashboard/restaurants")
         } catch (error) {
             toast.error((error as Error).message)
         }
     }
 
     return <PageContent
-        title={`${props.client.firstName} ${props.client.lastName}`}
+        title={`${props.restaurant.name}`}
         floatingActionButton={<div className="pr-6 pb-6">
             <Button
                 onClick={() => {
                     const formSubmit = document.getElementById(formSubmitId) as HTMLButtonElement | undefined;
                     formSubmit?.click()
                 }}
-            >Save client</Button>
+            >Save restaurant</Button>
         </div>}
     >
-        <ClientView
+        <RestaurantView
             formSubmitId={formSubmitId}
-            client={props.client}
-            onSave={async (client) => {
-                console.log(client)
-                await patchJSON("/api/clients/" + client.id, client)
+            restaurant={props.restaurant}
+            onSave={async (restaurant) => {
+                console.log(restaurant)
+                await patchJSON("/api/restaurants/" + restaurant.id, restaurant)
                 router.refresh()
             }}
         />
         <div className="mt-5">
-            <Button className="bg-red-500 text-white" onClick={handleDelete}><Trash2Icon />Delete client</Button>
+            <Button className="bg-red-500 text-white" onClick={handleDelete}><Trash2Icon />Delete restaurant</Button>
         </div>
     </PageContent>
 }

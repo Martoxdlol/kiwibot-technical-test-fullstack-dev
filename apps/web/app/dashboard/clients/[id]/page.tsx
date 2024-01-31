@@ -11,7 +11,7 @@ export default async function UpdateClientPage(props: { params: { id: string } }
 
     if (!client) {
         return <PageContent title="Client not found">
-            <p>The client you are find doesn't exist</p>
+            <p>The client you are looking for doesn't exist</p>
         </PageContent>
     }
 
