@@ -1,5 +1,5 @@
 import type { Client, Order, OrderItem, Restaurant } from "database"
-import { CookingPotIcon, StoreIcon } from "lucide-react"
+import { CookingPotIcon } from "lucide-react"
 import Link from "next/link"
 import OrderStatusDropdown from "./order-status-dropdown"
 import dayjs from "dayjs"

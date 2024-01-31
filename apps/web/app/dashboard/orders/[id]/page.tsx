@@ -1,6 +1,6 @@
 import { prisma } from "database";
 import dayjs from "dayjs";
-import { CalendarCheckIcon, CalendarClockIcon, CalendarDaysIcon, CheckCheckIcon, CheckIcon, ChefHatIcon, CookingPotIcon, DollarSignIcon, FlagIcon, Loader2Icon, MapPinIcon, PhoneIcon, StoreIcon, UserIcon } from "lucide-react";
+import { CalendarCheckIcon, CalendarClockIcon, CalendarDaysIcon, ChefHatIcon, CookingPotIcon, DollarSignIcon, FlagIcon, MapPinIcon, PhoneIcon, StoreIcon, UserIcon } from "lucide-react";
 import PageContent from "~/components/page-content";
 import { cn } from "~/lib/utils";
 

@@ -2,7 +2,7 @@
 import { Button } from "@repo/ui/button";
 import { Card } from "@repo/ui/card";
 import FilledInput from "@repo/ui/filled-input";
-import { CheckIcon, Loader2, PlusIcon } from "lucide-react";
+import { CheckIcon, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import PageContent from "~/components/page-content";
 import PickCustomerDialog from "~/components/pick-customer-dialog";
