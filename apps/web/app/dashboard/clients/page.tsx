@@ -23,7 +23,7 @@ export default async function ClientsPage() {
     </PageContent>
 }
 
-export function ClientTile(props: { client: Client }) {
+function ClientTile(props: { client: Client }) {
     return <li className="mx-[-20px]">
         <Link href={`/dashboard/clients/${props.client.id}`} className="flex items-center gap-5 px-[20px] hover:bg-stone-100 active:bg-stone-200 py-2">
             <div className="shrink-0">

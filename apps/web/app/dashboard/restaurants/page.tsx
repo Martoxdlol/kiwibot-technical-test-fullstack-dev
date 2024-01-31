@@ -23,7 +23,7 @@ export default async function RestaurantsPage() {
     </PageContent>
 }
 
-export function RestaurantTile(props: { restaurant: Restaurant }) {
+function RestaurantTile(props: { restaurant: Restaurant }) {
     return <li className="mx-[-20px]">
         <Link href={`/dashboard/restaurants/${props.restaurant.id}`} className="flex items-center gap-5 px-[20px] hover:bg-stone-100 active:bg-stone-200 py-2">
             <div className="shrink-0">
