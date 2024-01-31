@@ -50,7 +50,7 @@ export default function PageContent(props: {
 
     return <>
         <div id={containerId}>
-            <div className="sticky top-0 overflow-x-clip">
+            <div className="sticky top-0 overflow-x-clip z-10">
                 <nav className="bg-primary h-[60px] flex items-center px-5 text-2xl transition-shadow" id={navId}>
                     {props.title}
                 </nav>

@@ -34,4 +34,18 @@ ordersApp.post('/', async (c) => {
     return c.json({ message: 'Order Created' })
 })
 
+ordersApp.patch('/:id', async (c) => {
+    const orderId = c.req.param('id')
+    const input = validateBody(z.object({
+        status: z.enum(['PENDING', 'IN_PROGRESS', 'COMPLETED'])
+    }), await c.req.json())
+
+    await prisma.order.update({
+        where: { id: orderId },
+        data: { status: input.status }
+    })
+
+    return c.json({ message: 'Order Updated' })
+})
+
 ordersApp.onError(appOnErrorHandler)

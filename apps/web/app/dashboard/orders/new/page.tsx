@@ -153,7 +153,7 @@ function OrderSummary(props: {
 }) {
 
 
-    return <div className="w-[100vw] h-[52px] sm:w-[350px] sm:m-3 sm:rounded-md bg-secondary text-white flex justify-between overflow-hidden">
+    return <div className="w-[100%] h-[52px] sm:w-[350px] sm:m-3 sm:rounded-md bg-secondary text-white flex justify-between overflow-hidden">
         <div className="px-5 py-2">
             <p className="text-sm">{props.totalItems} {props.totalItems === 1 ? 'item' : 'items'}</p>
             <p className="text-xs">Total: ${props.totalPrice.toFixed(2)}</p>
