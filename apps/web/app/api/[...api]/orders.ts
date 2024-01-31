@@ -9,6 +9,7 @@ ordersApp.post('/', async (c) => {
     const input = validateBody(z.object({
         customerId: z.string(),
         restaurantId: z.string(),
+        creationIdempotencyKey: z.string(),
         items: z.array(z.object({
             description: z.string(),
             unitPrice: z.number(),
@@ -16,22 +17,18 @@ ordersApp.post('/', async (c) => {
         })),
     }), await c.req.json())
 
-    await prisma.order.create({
+    const result = await prisma.order.create({
         data: {
+            creationIdempotencyKey: input.creationIdempotencyKey,
             client: { connect: { id: input.customerId } },
             restaurant: { connect: { id: input.restaurantId } },
             orderItems: {
-                create: input.items.map(item => ({
-                    description: item.description,
-                    unitPrice: item.unitPrice,
-                    quantity: item.quantity,
-                    status: 'PENDING',
-                }))
+                create: input.items
             }
         }
     })
 
-    return c.json({ message: 'Order Created' })
+    return c.json({ message: 'Order Created', entityId: result.id })
 })
 
 ordersApp.patch('/:id', async (c) => {

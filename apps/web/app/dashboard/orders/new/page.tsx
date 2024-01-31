@@ -9,6 +9,8 @@ import PickCustomerDialog from "~/components/pick-customer-dialog";
 import PickRestaurantDialog from "~/components/pick-restaurant-dialog";
 import { OrderItem, placeOrder } from "~/lib/api";
 import { nanoid } from "nanoid";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function NewOrderPage() {
 
@@ -17,6 +19,8 @@ export default function NewOrderPage() {
     const [description, setDescription] = useState<string>("")
     const [unitPrice, setUnitPrice] = useState('')
     const [quantity, setQuantity] = useState('')
+
+    const router = useRouter()
 
     function addItem() {
         if (!description.trim() || !unitPrice || !quantity) {
@@ -67,20 +71,24 @@ export default function NewOrderPage() {
         const customerId = data.get('customerId')
         const restaurantId = data.get('restaurantId')
 
-        if(!customerId || !restaurantId) {
+        if (!customerId || !restaurantId) {
             return
         }
 
         const order = {
             customerId: customerId as string,
             restaurantId: restaurantId as string,
-            items
+            items,
+            creationIdempotencyKey: nanoid(),
         }
 
         try {
-            await placeOrder(order)
+            const result = await placeOrder(order)
+            toast.success("Order placed successfully")
+            router.replace('/dashboard/orders/' + result.entityId!)
         } catch (error) {
             console.error(error)
+            toast.error("Failed to place order");
         }
     }
 

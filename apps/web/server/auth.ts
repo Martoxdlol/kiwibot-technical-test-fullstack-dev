@@ -8,6 +8,9 @@ import { env } from "~/env.mjs";
 
 export const authOptions: AuthOptions = {
     adapter: PrismaAdapter(prisma),
+    session: {
+        strategy: 'jwt', // faster than database
+    },
     providers: [
         GoogleProvider({
             clientId: env.GOOGLE_CLIENT_ID,

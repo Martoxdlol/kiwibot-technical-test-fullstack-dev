@@ -1,16 +1,29 @@
 import { Context, Next } from "hono"
 import { HTTPException } from "hono/http-exception"
-import phone, { PhoneValidResult } from "phone"
+import parsePhoneNumber from 'libphonenumber-js'
 import { z } from "zod"
 import { getAuthServerSession } from "~/server/auth"
 
-export const phoneNumberSchema = z.string().refine((v) => phone(v).isValid).transform((v) => (phone(v) as PhoneValidResult).phoneNumber)
+export const phoneNumberSchema = z.string().transform(v => parsePhoneNumber(v)).refine((v) => {
+    return v?.isValid() === true
+}, {
+    message: 'Invalid phone number'
+}).transform(v => v?.number!)
 
 export function validateBody<T>(schema: z.Schema<T>, values: unknown): T {
     try {
         return schema.parse(values)
     } catch (e) {
-        throw new HTTPException(400, { message: 'Invalid Request Body' })
+        const isDev = process.env.NODE_ENV === 'development'
+        if (isDev) console.error(e)
+
+        let message = 'Invalid Request Body'
+
+        if (e instanceof z.ZodError) {
+            message = e.errors.map((e) => e.message).join(', ')
+        }
+
+        throw new HTTPException(400, { message })
     }
 }
 
@@ -24,7 +37,7 @@ export const authedMiddleware = async (c: Context, n: Next) => {
 
 export function appOnErrorHandler(err: Error, c: Context) {
     if (err instanceof HTTPException) {
-        return err.getResponse()
+        return c.json({ message: err.message }, err.status)
     }
 
     console.error(err)

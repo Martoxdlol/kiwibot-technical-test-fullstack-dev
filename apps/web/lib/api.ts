@@ -2,16 +2,27 @@ export function fetchJSON<T>(path: string) {
     return fetch(path).then((res) => res.json()) as Promise<T>;
 }
 
-export type ActionResult = { message: string }
+export type ActionResult = { message: string, entityId?: string }
 
-export function fetchWithBodyJSON(path: string, method: 'POST' | 'PATCH', body: any) {
-    return fetch(path, {
+export async function fetchWithBodyJSON(path: string, method: 'POST' | 'PATCH', body: any) {
+    const r = await fetch(path, {
         method: method,
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
-    }).then((res) => res.json()) as Promise<ActionResult>;
+    })
+
+    if(r.status < 200 || r.status >= 300) {
+
+        if(r.status === 400) {
+            const json = await r.json() as ActionResult;
+            throw new Error(json.message);
+        }
+
+        throw new Error(`Error status code: ${r.status}`)
+    }
+    return r.json() as Promise<ActionResult>;
 }
 
 export function postJSON(path: string, body: any) {

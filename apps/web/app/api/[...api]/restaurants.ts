@@ -25,6 +25,7 @@ restaurantsApp.post('/', authedMiddleware, async (c) => {
         address: z.string(),
         country: z.string(),
         phoneNumber: phoneNumberSchema,
+        creationIdempotencyKey: z.string(),
     }), await c.req.json())
 
     await prisma.restaurant.create({

@@ -32,7 +32,7 @@ export default function OrderTile(props: {
             {` - `}
             {dayjs(props.order.updatedAt).format('MMM D, YYYY h:mm A')}
         </p>
-        <div className="flex flex-nowrap gap-2 overflow-x-auto">
+        <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1">
             {props.order.orderItems.map(item => <div key={item.id} className="flex items-center px-2 py-1 border border-primary-strong bg-primary shadow-sm rounded-md">
                 <CookingPotIcon size={14} className="mr-1 shrink-0" />
                 <span className="whitespace-nowrap shrink-0">{item.description}</span>

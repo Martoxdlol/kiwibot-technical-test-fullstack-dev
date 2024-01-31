@@ -25,14 +25,15 @@ clientsApp.post('/', authedMiddleware, async (c) => {
         lastName: z.string(),
         address: z.string(),
         country: z.string(),
+        creationIdempotencyKey: z.string(),
         phoneNumber: phoneNumberSchema,
     }), await c.req.json())
 
-    await prisma.client.create({
+    const client = await prisma.client.create({
         data: input
     })
 
-    return c.json({ message: 'Client Created' })
+    return c.json({ message: 'Client Created', entityId: client.id })
 })
 
 
