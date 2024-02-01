@@ -1,4 +1,4 @@
-name: Test
+name: App Tests
 
 on:
   deployment_status:
@@ -16,3 +16,6 @@ jobs:
         run: pnpm turbo db:push-reset && pnpm turbo test
         env:
             DATABASE_PRISMA_URL: ${{ secrets.TEST_DATABASE_URL }}
+            DATABASE_URL_NON_POOLING: ${{ secrets.TEST_DATABASE_URL_NON_POOLING }}
+
+            
