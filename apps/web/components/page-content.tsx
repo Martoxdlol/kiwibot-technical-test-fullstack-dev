@@ -23,7 +23,7 @@ export default function PageContent(props: {
             return
         }
 
-        document.getElementById(containerId)?.animate([
+        document.getElementById(containerId)?.animate?.([
             {
                 opacity: 0.6,
                 transform: 'scale(0.85)',
