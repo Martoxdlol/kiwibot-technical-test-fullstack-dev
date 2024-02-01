@@ -15,4 +15,4 @@ jobs:
       - name: Run tests
         run: pnpm turbo db:push-reset && pnpm turbo test
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+            DATABASE_PRISMA_URL: ${{ secrets.DATABASE_URL }}

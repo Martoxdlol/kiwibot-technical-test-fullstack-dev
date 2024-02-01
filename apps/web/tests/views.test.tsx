@@ -5,12 +5,12 @@ vi.stubEnv('VITE_ENV', 'test')
 
 // Use testing database
 // It doesn't work ...
-// if (process.env.MOCK_DATABASE_URL) {
-//     vi.stubEnv('DATABASE_URL', process.env.MOCK_DATABASE_URL)
-//     vi.stubEnv('DATABASE_URL_NON_POOLING', process.env.MOCK_DATABASE_URL_NON_POOLING || '')
+// if (process.env.MOCK_DATABASE_PRISMA_URL) {
+//     vi.stubEnv('DATABASE_PRISMA_URL', process.env.MOCK_DATABASE_PRISMA_URL)
+//     vi.stubEnv('DATABASE_PRISMA_URL_NON_POOLING', process.env.MOCK_DATABASE_PRISMA_URL_NON_POOLING || '')
 //     console.log("Using mock database URL for tests")
 // } else {
-//     console.warn('No mock database URL provided, using real database for tests. This is not recommended. Set environment variable MOCK_DATABASE_URL to a mock database URL.')
+//     console.warn('No mock database URL provided, using real database for tests. This is not recommended. Set environment variable MOCK_DATABASE_PRISMA_URL to a mock database URL.')
 // }
 
 vi.mock("next/navigation", () => {
