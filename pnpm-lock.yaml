@@ -132,6 +132,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.17
         version: 10.4.17(postcss@8.4.33)
+      dotenv:
+        specifier: ^16.4.1
+        version: 16.4.1
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -2707,6 +2710,11 @@ packages:
 
   /dotenv@16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: true
+
+  /dotenv@16.4.1:
+    resolution: {integrity: sha512-CjA3y+Dr3FyFDOAMnxZEGtnW9KBR2M0JvvUtXNW+dYJL5ROWxP9DUHCwgFqpMk0OXCc0ljhaNTr2w/kutYIcHQ==}
     engines: {node: '>=12'}
     dev: true
 

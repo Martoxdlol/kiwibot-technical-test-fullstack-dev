@@ -6,6 +6,8 @@ export default defineConfig({
     plugins: [react()],
     test: {
         environment: 'jsdom',
+        testTimeout: 30000,
+        setupFiles: ['dotenv/config'],
     },
     // path alias ~/
     resolve: {
