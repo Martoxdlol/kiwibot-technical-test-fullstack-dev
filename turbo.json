@@ -19,6 +19,9 @@
     },
     "db:push": {
       "cache": false
+    },
+    "test": {
+      "dependsOn": ["^db:generate"]
     }
   }
 }
