@@ -105,8 +105,8 @@ function deleteOrder(orderId: string) {
 }
 
 
-test('dashboard overview renders signout button', () => {
-    render(<OverviewPage />)
+test('dashboard overview renders signout button', async () => {
+    render(await OverviewPage())
 
     const actionButton = screen.queryByText('Sign out')
 
