@@ -2,17 +2,6 @@ import { expect, test, vi } from 'vitest'
 
 vi.stubEnv('VITE_ENV', 'test')
 
-
-// Use testing database
-// It doesn't work ...
-// if (process.env.MOCK_DATABASE_PRISMA_URL) {
-//     vi.stubEnv('DATABASE_PRISMA_URL', process.env.MOCK_DATABASE_PRISMA_URL)
-//     vi.stubEnv('DATABASE_URL_NON_POOLING', process.env.MOCK_DATABASE_URL_NON_POOLING || '')
-//     console.log("Using mock database URL for tests")
-// } else {
-//     console.warn('No mock database URL provided, using real database for tests. This is not recommended. Set environment variable MOCK_DATABASE_PRISMA_URL to a mock database URL.')
-// }
-
 vi.mock("next/navigation", () => {
     const actual = vi.importActual("next/navigation");
     return {
@@ -35,6 +24,8 @@ import { prisma } from 'database';
 import { nanoid } from 'nanoid';
 import OrderPage from '~/app/dashboard/orders/[id]/page';
 import RestaurantsPage from '~/app/dashboard/restaurants/page'
+import NewOrderPage from '~/app/dashboard/orders/new/page';
+import ReactQueryProvider from '~/components/react-query-provider';
 
 
 function createDummyClient() {
@@ -113,9 +104,8 @@ function deleteOrder(orderId: string) {
     })
 }
 
-test('dashboard overview renders signout button', () => {
-    vi.stubGlobal('zzz', 'ZZZ')
 
+test('dashboard overview renders signout button', () => {
     render(<OverviewPage />)
 
     const actionButton = screen.queryByText('Sign out')
@@ -164,6 +154,28 @@ test('order details page', async () => {
 
     await deleteOrder(order.id)
     await deleteRestaurant(restaurant.id)
+    await deleteClient(client.id)
+})
+
+const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+test('show customer picker dialog', async () => {
+    render(<ReactQueryProvider>
+        <NewOrderPage />
+    </ReactQueryProvider>)
+
+    const button = screen.queryByText('Choose customer');
+
+    expect(button).toBeDefined()
+
+    const client = await createDummyClient()
+
+    button?.click()
+    await wait(10000)
+    const john = screen.queryByText('John Doe')
+
+    expect(john).toBeDefined()
+
     await deleteClient(client.id)
 })
 
