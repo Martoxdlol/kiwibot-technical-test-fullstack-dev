@@ -8,7 +8,7 @@ export default async function ClientsPage() {
     const clients = await prisma.client.findMany()
 
     return <PageContent
-        title="Clients"
+        title={<h1>Clients</h1>}
         floatingActionButton={<Link href="/dashboard/clients/new" className="pr-6 pb-6 block"><Button>New Client</Button></Link>}
     >
         {clients.length === 0 && <div className="flex justify-center py-10">

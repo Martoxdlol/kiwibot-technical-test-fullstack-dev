@@ -96,7 +96,7 @@ export default function NewOrderPage() {
 
     return <form onSubmit={handleSubmit}>
         <PageContent
-            title="New order"
+            title={<h1>New order</h1>}
             floatingActionButton={<OrderSummary
                 totalItems={totalItems}
                 totalPrice={totalPrice}

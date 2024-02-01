@@ -15,7 +15,7 @@ export default function NewClientPage() {
     const [creationIdempotencyKey] = useState(nanoid())
 
     return <PageContent
-        title="New Client"
+        title={<h1>New Client</h1>}
         floatingActionButton={<div className="pr-6 pb-6">
             <Button
                 onClick={() => {

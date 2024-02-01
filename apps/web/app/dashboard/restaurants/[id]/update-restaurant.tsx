@@ -29,7 +29,7 @@ export default function UpdateRestaurantView(props: { restaurant: Restaurant }) 
     }
 
     return <PageContent
-        title={`${props.restaurant.name}`}
+        title={<h1>{props.restaurant.name}</h1>}
         floatingActionButton={<div className="pr-6 pb-6">
             <Button
                 onClick={() => {

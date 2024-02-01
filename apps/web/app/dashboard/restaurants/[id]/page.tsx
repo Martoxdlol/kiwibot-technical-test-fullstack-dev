@@ -10,7 +10,7 @@ export default async function UpdateRestaurantPage(props: { params: { id: string
     })
 
     if (!restaurant) {
-        return <PageContent title="Restaurant not found">
+        return <PageContent title={<h1>Restaurant not found</h1>}>
             <p>The restaurant you are looking for doesn't exist</p>
         </PageContent>
     }

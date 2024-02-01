@@ -15,7 +15,7 @@ export default function NewRestaurantPage() {
     const [creationIdempotencyKey] = useState(nanoid())
 
     return <PageContent
-        title="New Restaurant"
+        title={<h1>New Restaurant</h1>}
         floatingActionButton={<div className="pr-6 pb-6">
             <Button
                 onClick={() => {

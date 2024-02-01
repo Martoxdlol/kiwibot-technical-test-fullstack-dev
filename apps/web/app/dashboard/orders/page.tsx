@@ -63,7 +63,7 @@ export default async function OrdersPage({ searchParams }: { searchParams: { dat
     })
 
     return <PageContent
-        title="Orders"
+        title={<h1>Orders</h1>}
         floatingActionButton={<NewOrderButton />}
     >
         <OrdersFilterRow />

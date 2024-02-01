@@ -29,7 +29,7 @@ export default function UpdateClientView(props: { client: Client }) {
     }
 
     return <PageContent
-        title={`${props.client.firstName} ${props.client.lastName}`}
+        title={<h1>{props.client.firstName} {props.client.lastName}</h1>}
         floatingActionButton={<div className="pr-6 pb-6">
             <Button
                 onClick={() => {

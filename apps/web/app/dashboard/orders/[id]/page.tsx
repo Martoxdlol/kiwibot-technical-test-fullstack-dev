@@ -25,7 +25,7 @@ export default async function OrderPage(props: { params: { id: string } }) {
 
     if (!order) {
         return <PageContent
-            title="Order not found"
+            title={<h1>Order not found</h1>}
         >
             <h1>We couldn't find the order</h1>
         </PageContent>
@@ -49,7 +49,7 @@ export default async function OrderPage(props: { params: { id: string } }) {
 
 
     return <PageContent
-        title={`Order from ${order.client.firstName} ${order.client.lastName}`}
+        title={<h1>Order from {order.client.firstName} {order.client.lastName}</h1>}
     >
         <div className="space-y-5">
             <div className="flex gap-5 flex-col md:flex-row">
